@@ -22,7 +22,7 @@ body {
 
 section {
     position: fixed;
-    top: 50%;
+    top: calc(50% - 30px);
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
@@ -37,15 +37,19 @@ section {
 }
 
 .chose-box {
-    outline: solid 2px var(--background-color2);
+    position: relative;
+    outline: solid 2px transparent;
     width: 220px;
     height: 320px;
     margin: 15px 15px;
-    padding: 5px;
     border-radius: 3px;
     background-color: var(--background-color2);
-    transition: var(--transition);
     cursor: pointer;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    color: transparent;
+    transition: var(--transition);
 }
 
 .chose-box:focus,  .chose-box:active, .chose-box:hover {
@@ -60,31 +64,64 @@ section {
 
 
 
+.green {
+    background-image: url('../../assets/images/wolontariusz.jpg');
+}
+
+
+.blue {
+    background-image: url('../../assets/images/potrzebujacy.jpg');
+}
+
+
+.purple {
+    background-image: url('../../assets/images/chat.jpg');
+}
+
+
+
 .green:focus, .green:active, .green:hover {
     outline: solid 2px #38ff18;
     color: #38ff18;
+    transition: var(--transition);
 }
 
 .blue:focus, .blue:active, .blue:hover {
     outline: solid 2px #18e0ff;
     color: #18e0ff;
+    transition: var(--transition);
 }
 
 .purple:focus, .purple:active, .purple:hover {
     outline: solid 2px #ff18bc;
     color: #ff18bc;
+    transition: var(--transition);
+}
+.in-chose-box {
+    border-radius: 3px;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    padding: 10px 10px;
+    margin: -5px -5px;
+    backdrop-filter: saturate(0%);
+    transition: var(--transition);
 }
 
+.chose-box > h1 {
+    position: absolute;
+    bottom: -35px;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 0;
+    padding: 20px 0 0;
+}
 
-
-
-
-
-
-
-
-
-
+.chose-box:focus > .in-chose-box, .chose-box:active > .in-chose-box, .chose-box:hover > .in-chose-box {
+    border-radius: 5px;
+    backdrop-filter: saturate(75%);
+    transition: var(--transition);
+}
 
 
 
