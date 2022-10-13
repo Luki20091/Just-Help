@@ -1,0 +1,94 @@
+:root {
+    --background-color: #121212;
+    --background-color2: #232323;
+    --blur: blur(10px);
+    --fonts-color: #fff;
+    --links-color: #fff;
+    --links-hover: #ffd700;
+    --font3: 'Kalam';
+    --transition: 200ms ease-in-out;
+    --shadows: 0 0 15px 0 rgba(0, 0, 0, 0.3);
+}
+
+
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: var(--background-color);
+    color: var(--fonts-color);
+}
+
+section {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.chose-boxes {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.chose-box {
+    outline: solid 2px var(--background-color2);
+    width: 220px;
+    height: 320px;
+    margin: 15px 15px;
+    padding: 5px;
+    border-radius: 3px;
+    background-color: var(--background-color2);
+    transition: var(--transition);
+    cursor: pointer;
+}
+
+.chose-box:focus,  .chose-box:active, .chose-box:hover {
+    width: 240px;
+    height: 340px;
+    margin: 0 5px;
+    border-radius: 5px;
+    background-color: var(--background-color2);
+    transition: var(--transition);
+    
+}
+
+
+
+.green:focus, .green:active, .green:hover {
+    outline: solid 2px #38ff18;
+    color: #38ff18;
+}
+
+.blue:focus, .blue:active, .blue:hover {
+    outline: solid 2px #18e0ff;
+    color: #18e0ff;
+}
+
+.purple:focus, .purple:active, .purple:hover {
+    outline: solid 2px #ff18bc;
+    color: #ff18bc;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
