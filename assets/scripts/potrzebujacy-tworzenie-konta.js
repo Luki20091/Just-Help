@@ -18,9 +18,6 @@ const auth = getAuth();
 document.getElementById("register").addEventListener("click", function (event) {
 	register();
 });
-document.getElementById("login").addEventListener("click", function (event) {
-	login();
-});
 
 function register() {
 	var username = document.getElementById("register-username").value;
