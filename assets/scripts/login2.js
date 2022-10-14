@@ -30,7 +30,7 @@ function login() {
 		.catch((error) => {
 			document.getElementById("login-password").value = "";
 			document.getElementById("login-password").focus();
-			console.log("B³êdne dane logowania!");
+			console.log("BÅ‚Ä™dne dane logowania!");
 			return
 		});
 }
