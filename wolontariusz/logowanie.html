@@ -3,41 +3,30 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="icon" type="image/x-icon" href="assets/icons/favicon.ico">
-	<title> | Wybierz</title>
+	<link rel="icon" type="image/x-icon" href="../assets/icons/favicon.ico">
+	<title> | Logowanie</title>
 	<meta name="description" content="">
 	<meta name="keywords" content="aktywista, charytatywność, charytatywny, dać komuś oparcie, dać oparcie, dla niepełnosprawnych, dla potrzebujących, dla seniorów, dla wolontariatu, dobre uczynki, dobrodziej, dobrowolny uczestnik, doby uczynek, doradztwo, działacz społeczny, e wolontariat, e-wolontariat, help, helpful, helpy, ideowiec, jak pomagać, jak pomoc ukrainie, jak pomóc, lekcje, obywatele, ochotnik, oparcie, oparcie, pobliska pomoc, podaj pomocną dłoń, podaj pomocną rękę, pomoc, pomoc 24/7, pomoc 24h, pomoc domowa, pomoc obywatelom, pomoc starszym, pomoc starszym osobom, pomoc ukrainie, pomoc w lekcjach, pomoc w prostych zadaniach, pomoc w zakupach, pomocny, potrzebujący, praca domowa, prace domowe, przyjacielska dłoń, przysługa, przysługi, senior, społeczna pomoc, społecznik, sąsiedzka pomoc, uczynek, uczynki, volunteer, wolontariat, wolontariat polska, wolontariusz, wpieranie, wsparcie, zadania społeczne, życzliwa dłoń">
 	<meta name="author" content="">
 	<meta name="copyright" content="Copyright ">
 
-	<link rel="stylesheet" type="text/css" href="assets/styles/index.css">
-	<link rel="stylesheet" type="text/css" href="assets/styles/relative.css">
+	<link rel="stylesheet" type="text/css" href="../assets/styles/index.css">
+	<link rel="stylesheet" type="text/css" href="../assets/styles/relative.css">
 
-	<script src="assets/scripts/onselect.js"></script>
+	<script src="../assets/scripts/onselect.js"></script>
 	<script src="https://kit.fontawesome.com/ac1b82ff7f.js" crossorigin="anonymous"></script>
 </head>
 
 
-	<body>
-		<section>
-			<h1>Chcesz pomóc? - Czy potrzebujesz pomocy?</h1> <!-- dodaj tu animacje zmieniania się tekstów -->
-			<div class="chose-boxes">
-				<div class="chose-box green" onclick="location.href='wolontariusz.html'" tabindex="1">
-					<div class="in-chose-box">
-					</div>
-					<h1>Wolontariusz</h1>
-				</div>
-				<div class="chose-box purple" onclick="location.href='chat.html'" tabindex="2">
-					<div class="in-chose-box">
-					</div>
-					<h1>Chat</h1>
-				</div>
-				<div class="chose-box blue" onclick="location.href='potrzebujacy.html'" tabindex="3">
-					<div class="in-chose-box">
-					</div>
-					<h1>Potrzebujący</h1>
-				</div>
-			</div>
-		</section>
-	</body>
+<body>
+	<section>
+		<form id="loginForm">
+			<h1>Logowanie</h1>
+			<input type="email" id="login-email" placeholder="Email" autocomplete="off" spellcheck="false" tabindex="1">
+			<input type="password" id="login-password" placeholder="Hasło" autocomplete="off" spellcheck="false" tabindex="2">
+			<button type="button" id="login" tabindex="3"><i class="fa-solid fa-lock"></i>&nbsp;Zaloguj</button>
+		</form>
+	</section>
+	<script src="../assets/scripts/wolontariusz.js"></script>
+</body>
 </html>
