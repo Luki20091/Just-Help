@@ -32,7 +32,7 @@ function register() {
 		return
 	}
 
-	createUserWithEmailAndPassword(email, password)
+	createUserWithEmailAndPassword(auth, email, password)
 		.then(function () {
 			var user = auth.currentUser
 
