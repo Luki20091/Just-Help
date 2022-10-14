@@ -36,7 +36,7 @@ function register() {
 		.then(function () {
 			var user = auth.currentUser
 
-			var database_ref = database.ref()
+			var database_ref = database.ref() 
 
 			var user_data = {
 				lp1_username: username,
