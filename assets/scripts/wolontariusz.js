@@ -20,10 +20,10 @@ document.getElementById("register").addEventListener("click", function (event) {
 });
 
 function register() {
-	username = document.getElementById("register-username").value;
-	email = document.getElementById("register-email").value;
-	password = document.getElementById("register-password").value;
-	confirmpassword = document.getElementById("register-confirm-password").value;
+	var username = document.getElementById("register-username").value;
+	var email = document.getElementById("register-email").value;
+	var password = document.getElementById("register-password").value;
+	var confirmpassword = document.getElementById("register-confirm-password").value;
 
 	if (validate_email(email) == false || validate_register_password(password) == false) {
 		document.getElementById("register-password").value = "";
