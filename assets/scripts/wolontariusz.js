@@ -1,6 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-app.js";
 import { getDatabase } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-database.js";
-import { getAuth } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-auth.js";
+import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-auth.js";
 
 const firebaseConfig = {
 	apiKey: "AIzaSyBxeDpNR6Q8y-bmJVnTkdvjeq4iSruwDIY",
@@ -32,7 +32,7 @@ function register() {
 		return
 	}
 
-	auth.createUserWithEmailAndPassword(email, password)
+	createUserWithEmailAndPassword(email, password)
 		.then(function () {
 			var user = auth.currentUser
 
