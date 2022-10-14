@@ -1,6 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-app.js";
 import { getDatabase } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-database.js";
-import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-auth.js";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword  } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-auth.js";
 
 const firebaseConfig = {
 	apiKey: "AIzaSyBxeDpNR6Q8y-bmJVnTkdvjeq4iSruwDIY",
@@ -17,6 +17,9 @@ const auth = getAuth();
 
 document.getElementById("register").addEventListener("click", function (event) {
 	register();
+});
+document.getElementById("login").addEventListener("click", function (event) {
+	login();
 });
 
 function register() {
@@ -49,7 +52,9 @@ function register() {
 
 			var userId = firebase.auth().currentUser.uid;
 			return firebase.database().ref('/users/' + userId).once('value').then((snapshot) => {
-				var username = (snapshot.val() && snapshot.val().lp1_username) || 'Anonymous';
+				username = (snapshot.val() && snapshot.val().lp1_username) || 'Anonymous';
+				console.log("Zarejestrowano!");
+				login();
 				
 			});
 		})
@@ -57,6 +62,7 @@ function register() {
 			document.getElementById("register-password").value = "";
 			document.getElementById("register-confirm-password").value = "";
 			document.getElementById("register-password").focus();
+			console.log("B³êdne dane rejestracji!");
 			return
 		});
 }
@@ -65,6 +71,21 @@ function register() {
 
 
 
+function login() {
+	var email = document.getElementById("login-email").value;
+	var password = document.getElementById("login-password").value;
+	signInWithEmailAndPassword(auth, email, password)
+		.then((userCredential) => {
+			console.log("Zalogowano!");
+
+		})
+		.catch((error) => {
+			document.getElementById("login-password").value = "";
+			document.getElementById("login-password").focus();
+			console.log("B³êdne dane logowania!");
+			return
+		});
+}
 
 
 
