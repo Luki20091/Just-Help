@@ -15,6 +15,7 @@ const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
 const auth = getAuth();
 
+
 function register() {
 	var username = document.getElementById("register-username").value;
 	var email = document.getElementById("register-email").value;

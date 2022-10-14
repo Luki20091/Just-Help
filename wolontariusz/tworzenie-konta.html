@@ -26,8 +26,13 @@
 			<input type="email" id="register-email" placeholder="Email" autocomplete="off" spellcheck="false" tabindex="2">
 			<input type="password" id="register-password" placeholder="Hasło" autocomplete="off" spellcheck="false" tabindex="3">
 			<input type="password" id="register-confirm-password" placeholder="Powtórz hasło" autocomplete="off" spellcheck="false" tabindex="4">
-			<button type="button" id="register" onclick="register();" tabindex="5"><i class="fa-solid fa-pencil"></i>&nbsp;Utwórz konto</button>
+			<button type="button" id="register" tabindex="5"><i class="fa-solid fa-pencil"></i>&nbsp;Utwórz konto</button>
 		</form>
 	</section>
+	<script>
+        document.getElementById("register").addEventListener("click", function (event) {
+            register();
+        });
+	</script>
 </body>
 </html>
