@@ -101,7 +101,7 @@ function getDateString() {
 
 
 function validate_email(email) {
-	expression = /^[^@]+@\w+(\.\w+)+\w$/
+	var expression = /^[^@]+@\w+(\.\w+)+\w$/
 	if (expression.test(email) == true) {
 		return true
 	} else {
