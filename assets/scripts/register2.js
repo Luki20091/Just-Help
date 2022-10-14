@@ -105,10 +105,9 @@ function validate_email(email) {
 }
 
 function validate_register_password(password, confirmpassword) {
-	if (password < 6 || password != confirmpassword) {
+	if (password != confirmpassword) {
 		return false
-	}
-	else {
+	} else {
 		return true
 	}
 }
