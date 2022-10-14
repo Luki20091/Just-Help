@@ -32,6 +32,7 @@ function register() {
 		document.getElementById("register-password").value = "";
 		document.getElementById("register-confirm-password").value = "";
 		document.getElementById("register-password").focus();
+		console.log("B³êdne dane rejestracji!");
 		return
 	}
 
