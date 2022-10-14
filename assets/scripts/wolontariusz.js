@@ -110,11 +110,7 @@ function validate_email(email) {
 }
 
 function validate_register_password(password, confirmpassword) {
-	if (password < 6) {
-		return false
-	}
-
-	if (password != confirmpassword) {
+	if (password < 6 || password != confirmpassword) {
 		return false
 	}
 	else {
