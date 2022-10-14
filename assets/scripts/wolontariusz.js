@@ -25,7 +25,7 @@ function register() {
 	var password = document.getElementById("register-password").value;
 	var confirmpassword = document.getElementById("register-confirm-password").value;
 
-	if (validate_email(email) == false || validate_register_password(password) == false) {
+	if (validate_email(email) == false || validate_register_password(password, confirmpassword) == false) {
 		document.getElementById("register-password").value = "";
 		document.getElementById("register-confirm-password").value = "";
 		document.getElementById("register-password").focus();
@@ -36,7 +36,7 @@ function register() {
 		.then(function () {
 			var user = auth.currentUser
 
-			var database_ref = database.ref() 
+			var database_ref = database.ref()
 
 			var user_data = {
 				lp1_username: username,
@@ -109,7 +109,7 @@ function validate_email(email) {
 	}
 }
 
-function validate_register_password(password) {
+function validate_register_password(password, confirmpassword) {
 	if (password < 6) {
 		return false
 	}
