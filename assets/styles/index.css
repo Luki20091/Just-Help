@@ -99,6 +99,13 @@ section {
 	background-image: url('../images/register.jpg');
 }
 
+.login2 {
+	background-image: url('../images/login2.jpg');
+}
+.register2 {
+	background-image: url('../images/register2.jpg');
+}
+
 
 
 .green:focus, .green:active, .green:hover {
