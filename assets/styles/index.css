@@ -86,12 +86,6 @@ section {
 }
 
 
-.purple {
-	background-image: url('../images/chat.jpg');
-}
-
-
-
 .login {
 	background-image: url('../images/login.jpg');
 }
@@ -117,18 +111,6 @@ section {
 .blue:focus, .blue:active, .blue:hover {
 	outline: solid 2px #18e0ff;
 	color: #18e0ff;
-	transition: var(--transition);
-}
-
-.purple:focus, .purple:active, .purple:hover {
-	outline: solid 2px #fb0baf;
-	color: #fb0baf;
-	transition: var(--transition);
-}
-
-.yellow:focus, .yellow:active, .yellow:hover {
-	outline: solid 2px #fbe40b;
-	color: #fbe40b;
 	transition: var(--transition);
 }
 

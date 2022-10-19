@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="icon" type="image/x-icon" href="assets/icons/favicon.ico">
-	<title> | Wybierz</title>
+	<title>Test | Wolontariusz</title>
 	<meta name="description" content="">
 	<meta name="keywords" content="aktywista, charytatywność, charytatywny, dać komuś oparcie, dać oparcie, dla niepełnosprawnych, dla potrzebujących, dla seniorów, dla wolontariatu, dobre uczynki, dobrodziej, dobrowolny uczestnik, doby uczynek, doradztwo, działacz społeczny, e wolontariat, e-wolontariat, help, helpful, helpy, ideowiec, jak pomagać, jak pomoc ukrainie, jak pomóc, lekcje, obywatele, ochotnik, oparcie, oparcie, pobliska pomoc, podaj pomocną dłoń, podaj pomocną rękę, pomoc, pomoc 24/7, pomoc 24h, pomoc domowa, pomoc obywatelom, pomoc starszym, pomoc starszym osobom, pomoc ukrainie, pomoc w lekcjach, pomoc w prostych zadaniach, pomoc w zakupach, pomocny, potrzebujący, praca domowa, prace domowe, przyjacielska dłoń, przysługa, przysługi, senior, społeczna pomoc, społecznik, sąsiedzka pomoc, uczynek, uczynki, volunteer, wolontariat, wolontariat polska, wolontariusz, wpieranie, wsparcie, zadania społeczne, życzliwa dłoń">
 	<meta name="author" content="">
@@ -14,25 +14,392 @@
 	<link rel="stylesheet" type="text/css" href="assets/styles/relative.css">
 
 	<script src="assets/scripts/onselect.js"></script>
+	<script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 	<script src="https://kit.fontawesome.com/ac1b82ff7f.js" crossorigin="anonymous"></script>
 </head>
 
 
-	<body>
-		<section>
-			<h1>Masz konto potrzebującego? - Czy jesteś tu nowy/a?</h1> <!-- dodaj tu animacje zmieniania się tekstów -->
-			<div class="chose-boxes">
-				<div class="chose-box blue login2" onclick="window.location='potrzebujacy/logowanie.html'" tabindex="1">
-					<div class="in-chose-box">
-					</div>
-					<h1>Logowanie</h1>
+<body>
+	<section id="menu" class="sections">
+		<h1>Masz konto potrzebującego? - Czy jesteś tu nowy/a?</h1> <!-- dodaj tu animacje zmieniania się tekstów -->
+		<div class="chose-boxes">
+			<div class="chose-box blue login2" id="checklog" tabindex="1">
+				<div class="in-chose-box">
 				</div>
-				<div class="chose-box blue register2" onclick="window.location='potrzebujacy/tworzenie-konta.html'" tabindex="2">
-					<div class="in-chose-box">
-					</div>
-					<h1>Tworzenie konta</h1>
-				</div>
+				<h1>Logowanie</h1>
 			</div>
-		</section>
-	</body>
+			<div class="chose-box blue register2" onclick="location.href='#tworzenie-konta'" tabindex="2">
+				<div class="in-chose-box">
+				</div>
+				<h1>Tworzenie konta</h1>
+			</div>
+		</div>
+	</section>
+	<section id="registerForm" class="sections">
+		<form>
+			<h1>Tworzenie konta</h1>
+			<input type="text" id="register-username" placeholder="Nazwa użytkownika" autocomplete="off" spellcheck="false" tabindex="1">
+			<input type="email" id="register-email" placeholder="Email" autocomplete="off" spellcheck="false" tabindex="2">
+			<input type="password" id="register-password" placeholder="Hasło" autocomplete="off" spellcheck="false" tabindex="3">
+			<input type="password" id="register-confirm-password" placeholder="Powtórz hasło" autocomplete="off" spellcheck="false" tabindex="4">
+			<button type="button" id="register" tabindex="5"><i class="fa-solid fa-pencil"></i>&nbsp;Utwórz konto</button>
+		</form>
+	</section>
+	<section id="loginForm" class="sections">
+		<form>
+			<h1>Logowanie</h1>
+			<input type="email" id="login-email" placeholder="Email" autocomplete="off" spellcheck="false" tabindex="1">
+			<input type="password" id="login-password" placeholder="Hasło" autocomplete="off" spellcheck="false" tabindex="2">
+			<button type="button" id="login" tabindex="3"><i class="fa-solid fa-lock"></i>&nbsp;Zaloguj</button>
+		</form>
+	</section>
+	<section id="profile" class="sections">
+		<h1>Profil</h1>
+		Nick: <div id="profil-username"><div class="loader"></div></div><br>
+		Email: <div id="profil-email"><div class="loader"></div></div><br>
+		Utworzono: <div id="profil-account-create"><div class="loader"></div></div>
+		<button type="button" id="logout" tabindex="1"><i class="fa-solid fa-lock"></i>&nbsp;Wyloguj</button>
+	</section>
+
+
+	<script type="module">
+
+
+
+
+
+		document.addEventListener("visibilitychange", function () {
+			if (document.hidden) {
+				document.title = ("Test | Wróć Do Nas!");
+			}
+			else {
+				var hash = window.location.hash.substring(1);
+				if (hash != "") {
+					document.title = ("Test | " + (hash.charAt(0).toUpperCase() + hash.slice(1)));
+				} else {
+					document.title = ("Test | Potrzebujący");
+				}
+			}
+		});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		import { initializeApp } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-app.js";
+		import { getDatabase, ref, set, child, get, update, remove, onValue } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-database.js";
+		import { getAuth, createUserWithEmailAndPassword, setPersistence, signInWithEmailAndPassword, browserLocalPersistence, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-auth.js";
+
+		const firebaseConfig = {
+			apiKey: "AIzaSyA1WwkPoB2v4hnw779hJa4ktje3kqgzlQo",
+			authDomain: "hack-heroes-2.firebaseapp.com",
+			projectId: "hack-heroes-2",
+			storageBucket: "hack-heroes-2.appspot.com",
+			messagingSenderId: "439192903781",
+			appId: "1:439192903781:web:a7368876d8b7dd991de68c",
+			measurementId: "G-F48EMNCWQP"
+		};
+
+		const app = initializeApp(firebaseConfig);
+		const database = getDatabase(app);
+		const auth = getAuth();
+
+
+		setPersistence(auth, browserLocalPersistence)
+			.then(() => {
+				return signInWithEmailAndPassword(auth, email, password);
+			})
+			.catch((error) => {
+			});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		const sections = document.querySelectorAll('.sections');
+
+		function clear() {
+			sections.forEach(box => {
+				box.style.display = "none";
+			})
+		};
+		window.addEventListener('load', (event) => {
+			hash();
+		});
+
+		if (("onhashchange" in window) && navigator.userAgent.toLowerCase().indexOf('msie') == -1) {
+			window.onhashchange = function () {
+				hash();
+			}
+		};
+
+		function hash() {
+			var hash = window.location.hash.substring(1);
+			clear();
+
+			if (hash == "logowanie") {
+				gotoLogin();
+			} else if (hash == "tworzenie-konta") {
+				gotoRegister();
+			} else if (hash == "profil") {
+				gotoProfile();
+			} else if (hash == "") {
+				gotoMenu();
+			} else {
+				location.href = "";
+				gotoMenu();
+			}
+
+			if (hash != "") {
+				document.title = ("Test | " + (hash.charAt(0).toUpperCase() + hash.slice(1)));
+			} else {
+				document.title = ("Test | Potrzebujący");
+			}
+		};
+
+		function gotoMenu() {
+			document.getElementById("menu").style.display = "block";
+		};
+		function gotoProfile() {
+			profil();
+			document.getElementById("profile").style.display = "block";
+		};
+		function gotoLogin() {
+			document.getElementById("loginForm").style.display = "block";
+			document.getElementById("login-email").focus();
+		};
+		function gotoRegister() {
+			document.getElementById("registerForm").style.display = "block";
+			document.getElementById("register-username").focus();
+		};
+		document.getElementById("register").addEventListener("click", function (event) {
+			register();
+		});
+		document.getElementById("login").addEventListener("click", function (event) {
+			login();
+		});
+		document.getElementById("checklog").addEventListener("click", function (event) {
+			chceckLogin();
+		});
+		document.getElementById("logout").addEventListener("click", function (event) {
+			logout();
+		});
+
+
+
+		function register() {
+			const username = document.getElementById("register-username");
+			const email = document.getElementById("register-email");
+			const password = document.getElementById("register-password");
+			const confirmpassword = document.getElementById("register-confirm-password");
+
+			if (validate_email(email) == false) {
+				email.value = "";
+				email.focus();
+				console.log("Błędny email!");
+				return
+			}
+			if (validate_password(password) == false) {
+				password.value = "";
+				confirmpassword.value = "";
+				password.focus();
+				console.log("Błędne hasło - min 7 znaków!");
+				return
+			}
+			if (validate_confirmpassword(password, confirmpassword) == false) {
+				password.value = "";
+				confirmpassword.value = "";
+				password.focus();
+				console.log("Błędnie powtórzone hasło!");
+				return
+			}
+			createUserWithEmailAndPassword(auth, email.value, password.value)
+				.then(function () {
+
+					const user = auth.currentUser
+					const db = getDatabase();
+					const dbRef = ref(db);
+
+					get(child(dbRef, "necessitous/" + user.uid)).then((snapshot) => {
+						set(ref(db, "necessitous/" + user.uid),
+							{
+								username: username.value,
+								email: email.value,
+								last_login: getDateString(),
+								account_create: getDateString()
+							})
+							.then(() => {
+								console.log("Zarejestrowano!");
+								location.href = "#logowanie";
+							})
+							.catch((error) => {
+								password.value = "";
+								confirmpassword.value = "";
+								password.focus();
+								console.log("Takie konto już istnieje!");
+								return
+							});
+					})
+				})
+		};
+
+		function getDateString() {
+			const date = new Date();
+			const year = date.getFullYear();
+			const month = `${date.getMonth() + 1}`.padStart(2, '0');
+			const day = `${date.getDate()}`.padStart(2, '0');
+			const hours = `${date.getHours()}`.padStart(2, '0');
+			const minutes = `${date.getMinutes()}`.padStart(2, '0');
+			const seconds = `${date.getSeconds()}`.padStart(2, '0');
+			return `${day}.${month}.${year} - ${hours}:${minutes}:${seconds}`
+		};
+
+
+		function validate_email(email) {
+			const expression = /^[^@]+@\w+(\.\w+)+\w$/
+			if (expression.test(email.value) == true) {
+				return true
+			} else {
+				return false
+			}
+		};
+
+		function validate_password(password) {
+			var pw = password.value;
+			if (pw.length > 6) {
+				return true
+			} else {
+				return false
+			}
+		};
+
+		function validate_confirmpassword(password, confirmpassword) {
+			if (password.value != confirmpassword.value) {
+				return false
+			} else {
+				return true
+			}
+		};
+
+		function login() {
+
+			const email = document.getElementById("login-email");
+			const password = document.getElementById("login-password");
+
+			signInWithEmailAndPassword(auth, email.value, password.value)
+				.then(function () {
+
+					const user = auth.currentUser
+					const db = getDatabase();
+					const dbRef = ref(db);
+
+					get(child(dbRef, "necessitous/" + user.uid)).then((snapshot) => {
+						update(ref(db, "necessitous/" + user.uid),
+							{
+								last_login: getDateString(),
+							})
+							.then(() => {
+								console.log("Zalogowano !");
+								location.href = "#profil";
+							})
+							.catch((error) => {
+								password.value = "";
+								password.focus();
+								console.log("Błędne dane logowania!");
+								return
+							});
+					})
+				})
+		};
+
+
+		function logout() {
+			const auth = getAuth();
+			signOut(auth).then(() => {
+				location.replace('index.html');
+			}).catch((error) => {
+				console.log("Błąd podczas wylogowywania!");
+			});
+		}
+
+
+
+
+
+
+
+		function profil() {
+			const db = getDatabase();
+			onAuthStateChanged(auth, (user) => {
+				if (user) {
+					const uid = user.uid;
+					const usernameRef = ref(db, 'necessitous/' + uid + '/username');
+					const emailRef = ref(db, 'necessitous/' + uid + '/email');
+					const accountcreateRef = ref(db, 'necessitous/' + uid + '/account_create');
+
+					onValue(usernameRef, (snapshot) => {
+						document.getElementById("profil-username").innerHTML = snapshot.val();
+					});
+					onValue(emailRef, (snapshot) => {
+						document.getElementById("profil-email").innerHTML = snapshot.val();
+					});
+					onValue(accountcreateRef, (snapshot) => {
+						document.getElementById("profil-account-create").innerHTML = snapshot.val();
+					});
+				} else {
+					console.log("Błąd w pobieraniu danych")
+				}
+			});
+		};
+
+
+		function chceckLogin() {
+			const db = getDatabase();
+			onAuthStateChanged(auth, (user) => {
+				if (user) {
+					location.href = "#profil";
+				} else {
+					location.href = "#logowanie";
+				}
+			});
+		}
+
+
+
+	</script>
+
+</body>
 </html>
