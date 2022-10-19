@@ -37,7 +37,7 @@
 	</section>
 	<section id="registerForm" class="sections">
 		<form>
-			<h1>Tworzenie konta</h1>
+			<h1>Tworzenie konta potrzebującego</h1>
 			<input type="text" id="register-username" placeholder="Nazwa użytkownika" autocomplete="off" spellcheck="false" tabindex="1">
 			<input type="email" id="register-email" placeholder="Email" autocomplete="off" spellcheck="false" tabindex="2">
 			<input type="password" id="register-password" placeholder="Hasło" autocomplete="off" spellcheck="false" tabindex="3">
@@ -47,17 +47,17 @@
 	</section>
 	<section id="loginForm" class="sections">
 		<form>
-			<h1>Logowanie</h1>
+			<h1>Logowanie potrzebującego</h1>
 			<input type="email" id="login-email" placeholder="Email" autocomplete="off" spellcheck="false" tabindex="1">
 			<input type="password" id="login-password" placeholder="Hasło" autocomplete="off" spellcheck="false" tabindex="2">
-			<button type="button" id="login" tabindex="3"><i class="fa-solid fa-lock"></i>&nbsp;Zaloguj</button>
+			<button type="button" id="login" tabindex="3"><i class="fa-solid fa-lock-open"></i>&nbsp;Zaloguj</button>
 		</form>
 	</section>
 	<section id="profile" class="sections">
-		<h1>Profil</h1>
+		<h1>Profil potrzebującego</h1>
 		Nick: <div id="profil-username"><div class="loader"></div></div><br>
 		Email: <div id="profil-email"><div class="loader"></div></div><br>
-		Utworzono: <div id="profil-account-create"><div class="loader"></div></div>
+		Utworzono: <div id="profil-account-create"><div class="loader"></div></div><br>
 		<button type="button" id="logout" tabindex="1"><i class="fa-solid fa-lock"></i>&nbsp;Wyloguj</button>
 	</section>
 
@@ -68,54 +68,18 @@
 
 
 
-		document.addEventListener("visibilitychange", function () {
-			if (document.hidden) {
-				document.title = ("Test | Wróć Do Nas!");
-			}
-			else {
-				var hash = window.location.hash.substring(1);
-				if (hash != "") {
-					document.title = ("Test | " + (hash.charAt(0).toUpperCase() + hash.slice(1)));
-				} else {
-					document.title = ("Test | Potrzebujący");
-				}
-			}
-		});
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 		import { initializeApp } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-app.js";
 		import { getDatabase, ref, set, child, get, update, remove, onValue } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-database.js";
 		import { getAuth, createUserWithEmailAndPassword, setPersistence, signInWithEmailAndPassword, browserLocalPersistence, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-auth.js";
 
 		const firebaseConfig = {
-			apiKey: "AIzaSyA1WwkPoB2v4hnw779hJa4ktje3kqgzlQo",
-			authDomain: "hack-heroes-2.firebaseapp.com",
-			projectId: "hack-heroes-2",
-			storageBucket: "hack-heroes-2.appspot.com",
-			messagingSenderId: "439192903781",
-			appId: "1:439192903781:web:a7368876d8b7dd991de68c",
-			measurementId: "G-F48EMNCWQP"
+			apiKey: "AIzaSyBMkYcrZ_ow4Qvopu2vp9yD4DsXBw0NeJ4",
+			authDomain: "hack-heroes-1.firebaseapp.com",
+			projectId: "hack-heroes-1",
+			storageBucket: "hack-heroes-1.appspot.com",
+			messagingSenderId: "455270955105",
+			appId: "1:455270955105:web:077e3d22e1223921245220",
+			measurementId: "G-3NM9QQZTHJ"
 		};
 
 		const app = initializeApp(firebaseConfig);
@@ -189,6 +153,23 @@
 				document.title = ("Test | Potrzebujący");
 			}
 		};
+
+		document.addEventListener("visibilitychange", function () {
+			if (document.hidden) {
+				document.title = ("Test | Wróć Do Nas!");
+			}
+			else {
+				var hash = window.location.hash.substring(1);
+				if (hash != "") {
+					document.title = ("Test | " + (hash.charAt(0).toUpperCase() + hash.slice(1)));
+				} else {
+					document.title = ("Test | Potrzebujący");
+				}
+			}
+		});
+
+
+
 
 		function gotoMenu() {
 			document.getElementById("menu").style.display = "block";
@@ -273,7 +254,14 @@
 								return
 							});
 					})
-				})
+                })
+                .catch((error) => {
+                    password.value = "";
+                    confirmpassword.value = "";
+                    password.focus();
+                    console.log("Takie konto już istnieje!");
+                    return
+                });
 		};
 
 		function getDateString() {
@@ -315,7 +303,6 @@
 		};
 
 		function login() {
-
 			const email = document.getElementById("login-email");
 			const password = document.getElementById("login-password");
 
@@ -332,8 +319,7 @@
 								last_login: getDateString(),
 							})
 							.then(() => {
-								console.log("Zalogowano !");
-								location.href = "#profil";
+								chceckLogin();
 							})
 							.catch((error) => {
 								password.value = "";
@@ -342,7 +328,13 @@
 								return
 							});
 					})
-				})
+                })
+                .catch((error) => {
+                    password.value = "";
+                    password.focus();
+                    console.log("Błędne dane logowania!");
+                    return
+                });
 		};
 
 
@@ -352,6 +344,15 @@
 				location.replace('index.html');
 			}).catch((error) => {
 				console.log("Błąd podczas wylogowywania!");
+			});
+		}
+
+		function silentlogout() {
+			const auth = getAuth();
+			signOut(auth).then(() => {
+				location.href = "#logowanie";
+			}).catch((error) => {
+				console.log("Błąd podczas cichego wylogowywania!");
 			});
 		}
 
@@ -371,13 +372,22 @@
 					const accountcreateRef = ref(db, 'necessitous/' + uid + '/account_create');
 
 					onValue(usernameRef, (snapshot) => {
-						document.getElementById("profil-username").innerHTML = snapshot.val();
+						if (snapshot.exists()) {
+							document.getElementById("profil-username").innerHTML = snapshot.val();
+						};
 					});
 					onValue(emailRef, (snapshot) => {
-						document.getElementById("profil-email").innerHTML = snapshot.val();
+						if (snapshot.exists()) {
+							document.getElementById("profil-email").innerHTML = snapshot.val();
+						} else {
+							console.log("Wykryto konto potrzebującego! - wylogowano")
+							silentlogout();
+						}
 					});
 					onValue(accountcreateRef, (snapshot) => {
-						document.getElementById("profil-account-create").innerHTML = snapshot.val();
+						if (snapshot.exists()) {
+							document.getElementById("profil-account-create").innerHTML = snapshot.val();
+						};
 					});
 				} else {
 					console.log("Błąd w pobieraniu danych")
@@ -390,7 +400,17 @@
 			const db = getDatabase();
 			onAuthStateChanged(auth, (user) => {
 				if (user) {
-					location.href = "#profil";
+					const uid = user.uid;
+					const emailRef = ref(db, 'necessitous/' + uid + '/email');
+					onValue(emailRef, (snapshot) => {
+						if (snapshot.exists()) {
+							console.log("Zalogowano!");
+							location.href = "#profil";
+						} else {
+							console.log("Wykryto konto wolontariusza! - wylogowano")
+							silentlogout();
+						};
+					});
 				} else {
 					location.href = "#logowanie";
 				}
@@ -400,6 +420,5 @@
 
 
 	</script>
-
 </body>
 </html>
