@@ -324,6 +324,12 @@
 						};
                         })
                     })
+		    .catch((error) => {
+                    	password.value = "";
+                        password.focus();
+                        console.log("Błędne dane logowania!");
+                        return
+                    });
             };
 
 
