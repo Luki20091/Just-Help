@@ -308,33 +308,14 @@
 
 			signInWithEmailAndPassword(auth, email.value, password.value)
 				.then(function () {
-
-					const user = auth.currentUser
-					const db = getDatabase();
-					const dbRef = ref(db);
-
-					get(child(dbRef, "necessitous/" + user.uid)).then((snapshot) => {
-						update(ref(db, "necessitous/" + user.uid),
-							{
-								last_login: getDateString(),
-							})
-							.then(() => {
-								chceckLogin();
-							})
-							.catch((error) => {
-								password.value = "";
-								password.focus();
-								console.log("Błędne dane logowania!");
-								return
-							});
-					})
-                })
-                .catch((error) => {
-                    password.value = "";
-                    password.focus();
-                    console.log("Błędne dane logowania!");
-                    return
-                });
+					chceckLogin();
+                		})
+                		.catch((error) => {
+                    			password.value = "";
+                    			password.focus();
+                    			console.log("Błędne dane logowania!");
+                    			return
+                		});
 		};
 
 
@@ -404,6 +385,16 @@
 					const emailRef = ref(db, 'necessitous/' + uid + '/email');
 					onValue(emailRef, (snapshot) => {
 						if (snapshot.exists()) {
+							const user = auth.currentUser
+							const db = getDatabase();
+							const dbRef = ref(db);
+							
+							get(child(dbRef, "necessitous/" + user.uid)).then((snapshot) => {
+								update(ref(db, "necessitous/" + user.uid),
+								{
+									last_login: getDateString(),
+								})
+							
 							console.log("Zalogowano!");
 							location.href = "#profil";
 						} else {
