@@ -13,26 +13,30 @@
 	<link rel="stylesheet" type="text/css" href="assets/styles/index.css">
 	<link rel="stylesheet" type="text/css" href="assets/styles/relative.css">
 
-	<script src="assets/scripts/onselect.js"></script>
 	<script src="https://kit.fontawesome.com/ac1b82ff7f.js" crossorigin="anonymous"></script>
 </head>
 
 
-	<body>
-		<section>
-			<h1>Chcesz pomóc? - Czy potrzebujesz pomocy?</h1> <!-- dodaj tu animacje zmieniania się tekstów -->
-			<div class="chose-boxes">
-				<div class="chose-box green" onclick="window.location='wolontariusz.html'" tabindex="1">
-					<div class="in-chose-box">
-					</div>
-					<h1>Wolontariusz</h1>
+<body>
+	<section>
+		<h1>Chcesz pomóc? - Czy potrzebujesz pomocy?</h1> <!-- dodaj tu animacje zmieniania się tekstów -->
+		<div class="chose-boxes">
+			<div class="chose-box green" onclick="window.location='wolontariusz.html'" tabindex="1">
+				<div class="in-chose-box">
 				</div>
-				<div class="chose-box blue" onclick="window.location='potrzebujacy.html'" tabindex="2">
-					<div class="in-chose-box">
-					</div>
-					<h1>Potrzebujący</h1>
-				</div>
+				<h1>Wolontariusz</h1>
 			</div>
-		</section>
-	</body>
+			<div class="chose-box blue" onclick="window.location='potrzebujacy.html'" tabindex="2">
+				<div class="in-chose-box">
+				</div>
+				<h1>Potrzebujący</h1>
+			</div>
+		</div>
+	</section>
+
+	<button id="iframe-btn"><i class="fa-solid fa-comments fa-2x"></i></button>
+	<iframe id="iframe" scrolling="no" frameBorder="0" src="https://chatbothackheroes.pythonanywhere.com/"></iframe>
+
+	<script src="assets/scripts/iframe.js"></script> 
+</body>
 </html>
