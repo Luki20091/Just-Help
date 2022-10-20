@@ -306,25 +306,25 @@
 
                         get(child(dbRef, "volunteers/" + user.uid)).then((snapshot) => {
                             if (snapshot.exists()) {
-                            		update(ref(db, "necessitous/" + user.uid),
-                                	{
-                                    		last_login: getDateString(),
-                                	})
-                                	.then(() => {
-                                    		chceckLogin();
-                                	})
-                                	.catch((error) => {
-                                    		password.value = "";
-                                    		password.focus();
-                                    		console.log("Błędne dane logowania!");
-                                    		return
-                                	});
-						} else {
-							console.log("test - błąd");
-						};
+                            	update(ref(db, "necessitous/" + user.uid),
+                                {
+                                    last_login: getDateString(),
+                                })
+                                .then(() => {
+                                    chceckLogin();
+                                })
+                                .catch((error) => {
+                                    	password.value = "";
+                                    	password.focus();
+                                   	console.log("Błędne dane logowania!");
+                                 	return
+                                });
+							} else {
+								console.log("test - błąd");
+							};
                         })
                     })
-		    .catch((error) => {
+		    		.catch((error) => {
                     	password.value = "";
                         password.focus();
                         console.log("Błędne dane logowania!");
