@@ -10,9 +10,59 @@
 	--links-hover: #ffd700;
 	--font: 'Comfortaa';
 	--transition: 200ms ease-in-out;
-	--shadows: 0 0 10px 1px rgba(0, 0, 0, 0.3);
-	--shadows-text: 1px 1px rgba(0, 0, 0, 0.3);
+	--shadows: 0 0 10px 1px rgba(0, 0, 0, 0.8);
+	--shadows-text: 1px 1px rgba(0, 0, 0, 0.4);
 }
+
+iframe {
+	width: 300px;
+	height: 450px;
+	border: none;
+	border-radius: 23px;
+	overflow: hidden;
+	position: absolute;
+	right: 10px;
+	bottom: 0px;
+	box-shadow: var(--shadows);
+	opacity: 0;
+	z-index: -20;
+	visibility: hidden;
+	transition: var(--transition);
+}
+
+#iframe-btn {
+	width: 55px;
+	height: 55px;
+	position: fixed;
+	right: 10px;
+	bottom: 10px;
+	border: 0;
+	padding: 10px;
+	border-radius: 50%;
+	box-shadow: var(--shadows);
+	background: linear-gradient(30deg, #581B98 1%, #9C1DE7 85%);
+	cursor: pointer;
+	z-index: 120;
+	color: #fff;
+}
+
+.iframe-active {
+	right: 15px;
+	bottom: 75px;
+	opacity: 1;
+	z-index: 30;
+	visibility: visible;
+	transition: var(--transition);
+}
+
+
+
+
+
+
+
+
+
 
 
 body {
@@ -25,7 +75,8 @@ body {
 	font-family: var(--font);
 	font-weight: 700;
 	cursor: context-menu;
-	text-shadow: var(--shadows-text);
+	-webkit-user-select: none;
+	-moz-user-select: none;
 }
 
 section {
@@ -47,27 +98,25 @@ section {
 
 .chose-box {
 	position: relative;
-	outline: solid 2px transparent;
+	outline: none;
 	width: 250px;
 	height: 350px;
 	margin: 15px 15px;
-	border-radius: 3px;
+	border-radius: 20px;
 	background-color: var(--background-color2);
 	cursor: pointer;
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: center center;
 	color: transparent;
-	text-shadow: none;
 	box-shadow: var(--shadows);
 	transition: var(--transition);
 }
 
 .chose-box:focus,  .chose-box:active, .chose-box:hover {
-	width: 270px;
-	height: 370px;
-	margin: 0 5px;
-	border-radius: 5px;
+	width: 271.42px;
+	height: 380px;
+	margin: 0 4.24px;
 	background-color: var(--background-color2);
 	text-shadow: var(--shadows-text);
 	transition: var(--transition);
@@ -103,13 +152,11 @@ section {
 
 
 .green:focus, .green:active, .green:hover {
-	outline: solid 2px #38ff18;
 	color: #38ff18;	
 	transition: var(--transition);
 }
 
 .blue:focus, .blue:active, .blue:hover {
-	outline: solid 2px #18e0ff;
 	color: #18e0ff;
 	transition: var(--transition);
 }
@@ -127,9 +174,9 @@ section {
 
 .chose-box > h1 {
 	position: relative;
-	bottom: -100%;
+	bottom: -104%;
 	margin: 0;
-	padding: 20px 0 0;
+	padding: 0;
 }
 
 .chose-box:focus > .in-chose-box, .chose-box:hover > .in-chose-box {
