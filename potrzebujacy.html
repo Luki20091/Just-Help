@@ -302,21 +302,39 @@
 			}
 		};
 
-		function login() {
-			const email = document.getElementById("login-email");
-			const password = document.getElementById("login-password");
+            function login() {
 
-			signInWithEmailAndPassword(auth, email.value, password.value)
-				.then(function () {
-					chceckLogin();
-                		})
-                		.catch((error) => {
-                    			password.value = "";
-                    			password.focus();
-                    			console.log("Błędne dane logowania!");
-                    			return
-                		});
-		};
+                const email = document.getElementById("login-email");
+                const password = document.getElementById("login-password");
+
+                signInWithEmailAndPassword(auth, email.value, password.value)
+                    .then(function () {
+
+                        const user = auth.currentUser
+                        const db = getDatabase();
+                        const dbRef = ref(db);
+
+                        get(child(dbRef, "necessitous/" + user.uid)).then((snapshot) => {
+							if (snapshot.exists()) {
+                            		update(ref(db, "necessitous/" + user.uid),
+                                	{
+                                    		last_login: getDateString(),
+                                	})
+                                	.then(() => {
+                                    		chceckLogin();
+                                	})
+                                	.catch((error) => {
+                                    		password.value = "";
+                                    		password.focus();
+                                    		console.log("Błędne dane logowania!");
+                                    		return
+                                	});
+						} else {
+							console.log("test - błąd");
+						};
+                        })
+                    })
+            };
 
 
 		function logout() {
@@ -377,36 +395,26 @@
 		};
 
 
-		function chceckLogin() {
-			const db = getDatabase();
-			onAuthStateChanged(auth, (user) => {
-				if (user) {
-					const uid = user.uid;
-					const emailRef = ref(db, 'necessitous/' + uid + '/email');
-					onValue(emailRef, (snapshot) => {
-						if (snapshot.exists()) {
-							const user = auth.currentUser
-							const db = getDatabase();
-							const dbRef = ref(db);
-							
-							get(child(dbRef, "necessitous/" + user.uid)).then((snapshot) => {
-								update(ref(db, "necessitous/" + user.uid),
-								{
-									last_login: getDateString(),
-								})
-							
-							console.log("Zalogowano!");
-							location.href = "#profil";
-						} else {
-							console.log("Wykryto konto wolontariusza! - wylogowano")
-							silentlogout();
-						};
-					});
-				} else {
-					location.href = "#logowanie";
-				}
-			});
-		}
+            function chceckLogin() {
+                const db = getDatabase();
+                onAuthStateChanged(auth, (user) => {
+                    if (user) {
+                        const uid = user.uid;
+                        const emailRef = ref(db, 'necessitous/' + uid + '/email');
+                        onValue(emailRef, (snapshot) => {
+                            if (snapshot.exists()) {
+                                console.log("Zalogowano!");
+                                location.href = "#profil";
+                            } else {
+                                console.log("Wykryto konto wolontariusza! - wylogowano")
+                                silentlogout();
+                            };
+                        });
+                    } else {
+                        location.href = "#logowanie";
+                    }
+                });
+            }
 
 
 
