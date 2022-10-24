@@ -3,30 +3,31 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="icon" type="image/x-icon" href="assets/icons/favicon.ico">
-	<title> | Wybierz</title>
-	<meta name="description" content="">
+	<title>Just Help | Wybierz</title>
+	<meta name="description" content="Aplikacja internetowa - konkurs Hack Heroes 2022">
 	<meta name="keywords" content="aktywista, charytatywność, charytatywny, dać komuś oparcie, dać oparcie, dla niepełnosprawnych, dla potrzebujących, dla seniorów, dla wolontariatu, dobre uczynki, dobrodziej, dobrowolny uczestnik, doby uczynek, doradztwo, działacz społeczny, e wolontariat, e-wolontariat, help, helpful, helpy, ideowiec, jak pomagać, jak pomoc ukrainie, jak pomóc, lekcje, obywatele, ochotnik, oparcie, oparcie, pobliska pomoc, podaj pomocną dłoń, podaj pomocną rękę, pomoc, pomoc 24/7, pomoc 24h, pomoc domowa, pomoc obywatelom, pomoc starszym, pomoc starszym osobom, pomoc ukrainie, pomoc w lekcjach, pomoc w prostych zadaniach, pomoc w zakupach, pomocny, potrzebujący, praca domowa, prace domowe, przyjacielska dłoń, przysługa, przysługi, senior, społeczna pomoc, społecznik, sąsiedzka pomoc, uczynek, uczynki, volunteer, wolontariat, wolontariat polska, wolontariusz, wpieranie, wsparcie, zadania społeczne, życzliwa dłoń">
-	<meta name="author" content="">
-	<meta name="copyright" content="Copyright ">
+	<meta name="author" content="Łukasz Kucharczyk, Oliwier Adamczyk, Piort Piskorz, Bartłomiej Pachniak">
+	<meta name="copyright" content="Copyright Just Help - AT squad">
 
 	<link rel="stylesheet" type="text/css" href="assets/styles/index.css">
-	<link rel="stylesheet" type="text/css" href="assets/styles/relative.css">
 
 	<script src="https://kit.fontawesome.com/ac1b82ff7f.js" crossorigin="anonymous"></script>
 </head>
 
 
-<body>
+<body onload="alert('info', 'Wybierz!');">
+	<div id="loader-wrapper">
+		<div class="loader2"></div>
+	</div>
 	<section>
-		<h1>Chcesz pomóc? - Czy potrzebujesz pomocy?</h1> <!-- dodaj tu animacje zmieniania się tekstów -->
+		<h1>Chcesz pomóc? - Czy potrzebujesz pomocy?</h1>
 		<div class="chose-boxes">
-			<div class="chose-box green" onclick="window.location='wolontariusz.html'" tabindex="1">
+			<div class="chose-box green" id="vol" tabindex="1">
 				<div class="in-chose-box">
 				</div>
 				<h1>Wolontariusz</h1>
 			</div>
-			<div class="chose-box blue" onclick="window.location='potrzebujacy.html'" tabindex="2">
+			<div class="chose-box blue" id="nec" tabindex="2">
 				<div class="in-chose-box">
 				</div>
 				<h1>Potrzebujący</h1>
@@ -35,8 +36,14 @@
 	</section>
 
 	<button id="iframe-btn"><i class="fa-solid fa-comments fa-2x"></i></button>
+	<button id="back-btn"><i class="fa-solid fa-backward fa-2x"></i></button>
 	<iframe id="iframe" scrolling="no" frameBorder="0" src="https://chatbothackheroes.pythonanywhere.com/"></iframe>
 
-	<script src="assets/scripts/iframe.js"></script> 
+	<div id="alert"><h3 id="alert-message"></h3><div id="alert-unload"></div></div>
+	<script src="assets/scripts/loader.js"></script>
+	<script src="assets/scripts/iframe.js"></script>
+	<script src="assets/scripts/back.js"></script>
+	<script src="assets/scripts/alert.js"></script>
+	<script src="assets/scripts/volnec.js"></script>
 </body>
 </html>

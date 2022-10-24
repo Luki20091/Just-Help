@@ -3,15 +3,13 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="icon" type="image/x-icon" href="assets/icons/favicon.ico">
-	<title>Test | Wolontariusz</title>
-	<meta name="description" content="">
+	<title>Just Help | Potrzebujący</title>
+	<meta name="description" content="Aplikacja internetowa - konkurs Hack Heroes 2022">
 	<meta name="keywords" content="aktywista, charytatywność, charytatywny, dać komuś oparcie, dać oparcie, dla niepełnosprawnych, dla potrzebujących, dla seniorów, dla wolontariatu, dobre uczynki, dobrodziej, dobrowolny uczestnik, doby uczynek, doradztwo, działacz społeczny, e wolontariat, e-wolontariat, help, helpful, helpy, ideowiec, jak pomagać, jak pomoc ukrainie, jak pomóc, lekcje, obywatele, ochotnik, oparcie, oparcie, pobliska pomoc, podaj pomocną dłoń, podaj pomocną rękę, pomoc, pomoc 24/7, pomoc 24h, pomoc domowa, pomoc obywatelom, pomoc starszym, pomoc starszym osobom, pomoc ukrainie, pomoc w lekcjach, pomoc w prostych zadaniach, pomoc w zakupach, pomocny, potrzebujący, praca domowa, prace domowe, przyjacielska dłoń, przysługa, przysługi, senior, społeczna pomoc, społecznik, sąsiedzka pomoc, uczynek, uczynki, volunteer, wolontariat, wolontariat polska, wolontariusz, wpieranie, wsparcie, zadania społeczne, życzliwa dłoń">
-	<meta name="author" content="">
-	<meta name="copyright" content="Copyright ">
+	<meta name="author" content="Łukasz Kucharczyk, Oliwier Adamczyk, Piort Piskorz, Bartłomiej Pachniak">
+	<meta name="copyright" content="Copyright Just Help - AT squad">
 
 	<link rel="stylesheet" type="text/css" href="assets/styles/index.css">
-	<link rel="stylesheet" type="text/css" href="assets/styles/relative.css">
 
 	<script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 	<script src="https://kit.fontawesome.com/ac1b82ff7f.js" crossorigin="anonymous"></script>
@@ -19,414 +17,761 @@
 
 
 <body>
-    <section id="menu" class="sections">
-        <h1>Masz konto potrzebującego? - Czy jesteś tu nowy/a?</h1> <!-- dodaj tu animacje zmieniania się tekstów -->
-        <div class="chose-boxes">
-            <div class="chose-box blue login2" id="checklog" tabindex="1">
-                <div class="in-chose-box">
-                </div>
-                <h1>Logowanie</h1>
-            </div>
-            <div class="chose-box blue register2" onclick="location.href='#tworzenie-konta'" tabindex="2">
-                <div class="in-chose-box">
-                </div>
-                <h1>Tworzenie konta</h1>
-            </div>
-        </div>
-    </section>
-    <section id="registerForm" class="sections">
-        <form>
-            <h1>Tworzenie konta potrzebującego</h1>
-            <input type="text" id="register-username" placeholder="Nazwa użytkownika" autocomplete="off" spellcheck="false" tabindex="1">
-            <input type="email" id="register-email" placeholder="Email" autocomplete="off" spellcheck="false" tabindex="2">
-            <input type="password" id="register-password" placeholder="Hasło" autocomplete="off" spellcheck="false" tabindex="3">
-            <input type="password" id="register-confirm-password" placeholder="Powtórz hasło" autocomplete="off" spellcheck="false" tabindex="4">
-            <button type="button" id="register" tabindex="5"><i class="fa-solid fa-pencil"></i>&nbsp;Utwórz konto</button>
-        </form>
-    </section>
-    <section id="loginForm" class="sections">
-        <form>
-            <h1>Logowanie potrzebującego</h1>
-            <input type="email" id="login-email" placeholder="Email" autocomplete="off" spellcheck="false" tabindex="1">
-            <input type="password" id="login-password" placeholder="Hasło" autocomplete="off" spellcheck="false" tabindex="2">
-            <button type="button" id="login" tabindex="3"><i class="fa-solid fa-lock-open"></i>&nbsp;Zaloguj</button>
-        </form>
-    </section>
-    <section id="profile" class="sections">
-        <h1>Profil potrzebującego</h1>
-        Nick: <div id="profil-username"><div class="loader"></div></div><br>
-        Email: <div id="profil-email"><div class="loader"></div></div><br>
-        Punkty: <div id="profil-points"><div class="loader"></div></div><br>
-        Utworzono: <div id="profil-account-create"><div class="loader"></div></div><br>
-        <button type="button" id="logout" tabindex="1"><i class="fa-solid fa-lock"></i>&nbsp;Wyloguj</button>
-    </section>
+	<div id="loader-wrapper">
+		<div class="loader2">
+		</div>
+	</div>
+	<div id="test">
+		<h2>Testowe konto:</h2>
+		<p>potrzebujacy@test.test</p>
+		<p>12345678</p>
+	</div>
+	<section id="menu" class="sections">
+		<h1>Masz konto potrzebującego? - Czy jesteś tu nowy/a?</h1>
+		<div class="chose-boxes">
+			<div class="chose-box blue login2" id="log" tabindex="1">
+				<div class="in-chose-box">
+				</div>
+				<h1>Logowanie</h1>
+			</div>
+			<div class="chose-box blue register2" id="reg" tabindex="2">
+				<div class="in-chose-box">
+				</div>
+				<h1>Tworzenie konta</h1>
+			</div>
+		</div>
+	</section>
+	<section id="registerForm" class="sections">
+		<form>
+			<h1>Tworzenie konta potrzebującego</h1>
+			<input type="text" id="register-username" placeholder="Nazwa użytkownika" autocomplete="off" spellcheck="false" tabindex="1">
+			<input type="email" id="register-email" placeholder="Email" autocomplete="off" spellcheck="false" tabindex="2">
+			<input type="password" id="register-password" placeholder="Hasło" autocomplete="off" spellcheck="false" tabindex="3">
+			<input type="password" id="register-confirm-password" placeholder="Powtórz hasło" autocomplete="off" spellcheck="false" tabindex="4">
+			<button type="button" id="register" tabindex="5"><i class="fa-solid fa-pencil"></i>&nbsp;Utwórz konto</button>
+		</form>
+	</section>
+	<section id="loginForm" class="sections">
+		<form>
+			<h1>Logowanie potrzebującego</h1>
+			<input type="email" id="login-email" placeholder="Email" autocomplete="off" spellcheck="false" tabindex="1">
+			<input type="password" id="login-password" placeholder="Hasło" autocomplete="off" spellcheck="false" tabindex="2">
+			<button type="button" id="login" tabindex="3"><i class="fa-solid fa-lock-open"></i>&nbsp;Zaloguj</button>
+		</form>
+	</section>
+	<section id="profile" class="sections">
+		<h1>Profil potrzebującego</h1>
+		Nick: <div id="profile-username"><div class="loader"></div></div><br>
+		Email: <div id="profile-email"><div class="loader"></div></div><br>
+		Utworzono: <div id="profile-account-create"><div class="loader"></div></div><br>
+		<button type="button" id="logout"><i class="fa-solid fa-lock"></i>&nbsp;Wyloguj</button>
+		<button type="button" onclick="location.href='#zlecenia'">Zlecenia</button>
+
+	</section>
+	<section id="createpostForm" class="sections">
+		<h1>Tworzenie zlecenia</h1>
+		<form>
+			<input id="createpost-title" type="text" placeholder="Tytuł" autocomplete="off" spellcheck="false" tabindex="1">
+			<input id="createpost-description" type="text" placeholder="Opis" autocomplete="off" spellcheck="false" tabindex="2">
+			<input id="createpost-phone" type="tel" placeholder="Telefon" autocomplete="off" spellcheck="false" tabindex="3">
+			<select id="createpost-city" name="city" autocomplete="off" spellcheck="false" tabindex="4">
+				<option value="Białystok">Białystok</option>
+				<option value="Bydgoszcz">Bydgoszcz</option>
+				<option value="Gdańsk">Gdańsk</option>
+				<option value="Katowice">Katowice</option>
+				<option value="Kielce">Kielce</option>
+				<option value="Kraków">Kraków</option>
+				<option value="Lublin">Lublin</option>
+				<option value="Łódź">Łódź</option>
+				<option value="Olsztyn">Olsztyn</option>
+				<option value="Opole">Opole</option>
+				<option value="Poznań">Poznań</option>
+				<option value="Radom">Radom</option>
+				<option value="Rzeszów">Rzeszów</option>
+				<option value="Szczecin">Szczecin</option>
+				<option value="Świnoujście">Świnoujście</option>
+				<option value="Toruń">Toruń</option>
+				<option value="Warszawa">Warszawa</option>
+				<option value="Wrocław">Wrocław</option>
+				<option value="Zielona Góra">Zielona Góra</option>
+			</select>
+			<input id="createpost-address" type="text" placeholder="Adres" autocomplete="off" spellcheck="false" tabindex="5">
+			<button type="button" id="createpost" tabindex="6"><i class="fa-solid fa-circle-plus"></i>&nbsp;Dodaj</button>
+		</form>
+	</section>
+
+	<section id="posts" class="sections">
+		<h1 id="posts-h1"></h1>
+		<div id="postsList">
+			<div class="loader"></div>
+		</div>
+	</section>
+
+	<button id="iframe-btn"><i class="fa-solid fa-comments fa-2x"></i></button>
+	<button id="back-btn"><i class="fa-solid fa-backward fa-2x"></i></button>
+	<iframe id="iframe" scrolling="no" frameBorder="0" src="https://chatbothackheroes.pythonanywhere.com/"></iframe>
+
+
+	<div id="alert"><h3 id="alert-message"></h3><div id="alert-unload"></div></div>
+	<script src="assets/scripts/loader.js"></script>
+	<script src="assets/scripts/iframe.js"></script>
+	<script src="assets/scripts/back.js"></script>
+	<script src="assets/scripts/alert.js"></script>
+	<script src="assets/scripts/date.js"></script>
+	<script src="assets/scripts/reg.js"></script>
+	<script type="module">
 
-    <button id="iframe-btn"><i class="fa-solid fa-comments fa-2x"></i></button>
-    <iframe id="iframe" scrolling="no" frameBorder="0" src="https://chatbothackheroes.pythonanywhere.com/"></iframe>
 
-    <script src="assets/scripts/iframe.js"></script>
-    <script type="module">
 
 
-
-
-
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-app.js";
-        import { getDatabase, ref, set, child, get, update, remove, onValue } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-database.js";
-        import { getAuth, createUserWithEmailAndPassword, setPersistence, signInWithEmailAndPassword, browserLocalPersistence, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-auth.js";
+		import { initializeApp } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-app.js";
+		import { getDatabase, ref, set, child, get, update, remove, onValue, push, query, orderByChild, equalTo } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-database.js";
+		import { getAuth, createUserWithEmailAndPassword, setPersistence, signInWithEmailAndPassword, browserLocalPersistence, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-auth.js";
 
-        const firebaseConfig = {
-            apiKey: "AIzaSyBMkYcrZ_ow4Qvopu2vp9yD4DsXBw0NeJ4",
-            authDomain: "hack-heroes-1.firebaseapp.com",
-            projectId: "hack-heroes-1",
-            storageBucket: "hack-heroes-1.appspot.com",
-            messagingSenderId: "455270955105",
-            appId: "1:455270955105:web:077e3d22e1223921245220",
-            measurementId: "G-3NM9QQZTHJ"
-        };
-
-        const app = initializeApp(firebaseConfig);
-        const database = getDatabase(app);
-        const auth = getAuth();
-
-
-        setPersistence(auth, browserLocalPersistence)
-            .then(() => {
-                return signInWithEmailAndPassword(auth, email, password);
-            })
-            .catch((error) => {
-            });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        const sections = document.querySelectorAll('.sections');
-
-        function clear() {
-            sections.forEach(box => {
-                box.style.display = "none";
-            })
-        };
-        window.addEventListener('load', (event) => {
-            hash();
-        });
-
-        if (("onhashchange" in window) && navigator.userAgent.toLowerCase().indexOf('msie') == -1) {
-            window.onhashchange = function () {
-                hash();
-            }
-        };
-
-        function hash() {
-            var hash = window.location.hash.substring(1);
-            clear();
-
-            if (hash == "logowanie") {
-                gotoLogin();
-            } else if (hash == "tworzenie-konta") {
-                gotoRegister();
-            } else if (hash == "profil") {
-                gotoProfile();
-            } else if (hash == "") {
-                gotoMenu();
-            } else {
-                location.href = "";
-                gotoMenu();
-            }
-
-            if (hash != "") {
-                document.title = ("Test | " + (hash.charAt(0).toUpperCase() + hash.slice(1)));
-            } else {
-                document.title = ("Test | Potrzebujący");
-            }
-        };
-
-        document.addEventListener("visibilitychange", function () {
-            if (document.hidden) {
-                document.title = ("Test | Wróć Do Nas!");
-            }
-            else {
-                var hash = window.location.hash.substring(1);
-                if (hash != "") {
-                    document.title = ("Test | " + (hash.charAt(0).toUpperCase() + hash.slice(1)));
-                } else {
-                    document.title = ("Test | Potrzebujący");
-                }
-            }
-        });
-
-
-
-
-        function gotoMenu() {
-            document.getElementById("menu").style.display = "block";
-        };
-        function gotoProfile() {
-            profil();
-            document.getElementById("profile").style.display = "block";
-        };
-        function gotoLogin() {
-            document.getElementById("loginForm").style.display = "block";
-            document.getElementById("login-email").focus();
-        };
-        function gotoRegister() {
-            document.getElementById("registerForm").style.display = "block";
-            document.getElementById("register-username").focus();
-        };
-        document.getElementById("register").addEventListener("click", function (event) {
-            register();
-        });
-        document.getElementById("login").addEventListener("click", function (event) {
-            login();
-        });
-        document.getElementById("checklog").addEventListener("click", function (event) {
-            chceckLogin();
-        });
-        document.getElementById("logout").addEventListener("click", function (event) {
-            logout();
-        });
-
-
-
-        function register() {
-            const username = document.getElementById("register-username");
-            const email = document.getElementById("register-email");
-            const password = document.getElementById("register-password");
-            const confirmpassword = document.getElementById("register-confirm-password");
-
-            if (validate_email(email) == false) {
-                email.value = "";
-                email.focus();
-                console.log("Błędny email!");
-                return
-            }
-            if (validate_password(password) == false) {
-                password.value = "";
-                confirmpassword.value = "";
-                password.focus();
-                console.log("Błędne hasło - min 7 znaków!");
-                return
-            }
-            if (validate_confirmpassword(password, confirmpassword) == false) {
-                password.value = "";
-                confirmpassword.value = "";
-                password.focus();
-                console.log("Błędnie powtórzone hasło!");
-                return
-            }
-            createUserWithEmailAndPassword(auth, email.value, password.value)
-                .then(function () {
-
-                    const user = auth.currentUser
-                    const db = getDatabase();
-                    const dbRef = ref(db);
-
-                    get(child(dbRef, "necessitous/" + user.uid)).then((snapshot) => {
-                        set(ref(db, "necessitous/" + user.uid),
-                            {
-                                username: username.value,
-                                email: email.value,
-                                last_login: getDateString(),
-                                account_create: getDateString()
-                            })
-                            .then(() => {
-                                console.log("Zarejestrowano!");
-                                location.href = "#logowanie";
-                            })
-                            .catch((error) => {
-                                password.value = "";
-                                confirmpassword.value = "";
-                                password.focus();
-                                console.log("Takie konto już istnieje!");
-                                return
-                            });
-                    })
-                })
-                .catch((error) => {
-                    password.value = "";
-                    confirmpassword.value = "";
-                    password.focus();
-                    console.log("Takie konto już istnieje!");
-                    return
-                });
-        };
-
-        function getDateString() {
-            const date = new Date();
-            const year = date.getFullYear();
-            const month = `${date.getMonth() + 1}`.padStart(2, '0');
-            const day = `${date.getDate()}`.padStart(2, '0');
-            const hours = `${date.getHours()}`.padStart(2, '0');
-            const minutes = `${date.getMinutes()}`.padStart(2, '0');
-            const seconds = `${date.getSeconds()}`.padStart(2, '0');
-            return `${day}.${month}.${year} - ${hours}:${minutes}:${seconds}`
-        };
-
-
-        function validate_email(email) {
-            const expression = /^[^@]+@\w+(\.\w+)+\w$/
-            if (expression.test(email.value) == true) {
-                return true
-            } else {
-                return false
-            }
-        };
-
-        function validate_password(password) {
-            var pw = password.value;
-            if (pw.length > 6) {
-                return true
-            } else {
-                return false
-            }
-        };
-
-        function validate_confirmpassword(password, confirmpassword) {
-            if (password.value != confirmpassword.value) {
-                return false
-            } else {
-                return true
-            }
-        };
-
-        function login() {
-
-            const email = document.getElementById("login-email");
-            const password = document.getElementById("login-password");
-
-            signInWithEmailAndPassword(auth, email.value, password.value)
-                .then(function () {
-
-                    const user = auth.currentUser
-                    const db = getDatabase();
-                    const dbRef = ref(db);
-
-                    get(child(dbRef, "necessitous/" + user.uid)).then((snapshot) => {
-                        if (snapshot.exists()) {
-                            update(ref(db, "necessitous/" + user.uid),
-                                {
-                                    last_login: getDateString(),
-                                })
-                                .then(() => {
-                                    chceckLogin();
-                                })
-                                .catch((error) => {
-                                    password.value = "";
-                                    password.focus();
-                                    console.log("Błędne dane logowania!");
-                                    return
-                                });
-                        } else {
-                            console.log("test - błąd");
-                        };
-                    })
-                })
-                .catch((error) => {
-                    password.value = "";
-                    password.focus();
-                    console.log("Błędne dane logowania!");
-                    return
-                });
-        };
-
-
-        function logout() {
-            const auth = getAuth();
-            signOut(auth).then(() => {
-                location.replace('index.html');
-            }).catch((error) => {
-                console.log("Błąd podczas wylogowywania!");
-            });
-        }
-
-        function silentlogout() {
-            const auth = getAuth();
-            signOut(auth).then(() => {
-                location.href = "#logowanie";
-            }).catch((error) => {
-                console.log("Błąd podczas cichego wylogowywania!");
-            });
-        }
-
-
-
-
-
-
-
-        function profil() {
-            const db = getDatabase();
-            onAuthStateChanged(auth, (user) => {
-                if (user) {
-                    const uid = user.uid;
-                    const usernameRef = ref(db, 'necessitous/' + uid + '/username');
-                    const emailRef = ref(db, 'necessitous/' + uid + '/email');
-                    const accountcreateRef = ref(db, 'necessitous/' + uid + '/account_create');
-
-                    onValue(usernameRef, (snapshot) => {
-                        if (snapshot.exists()) {
-                            document.getElementById("profil-username").innerHTML = snapshot.val();
-                        };
-                    });
-                    onValue(emailRef, (snapshot) => {
-                        if (snapshot.exists()) {
-                            document.getElementById("profil-email").innerHTML = snapshot.val();
-                        } else {
-                            console.log("Wykryto konto potrzebującego! - wylogowano")
-                            silentlogout();
-                        }
-                    });
-                    onValue(accountcreateRef, (snapshot) => {
-                        if (snapshot.exists()) {
-                            document.getElementById("profil-account-create").innerHTML = snapshot.val();
-                        };
-                    });
-                } else {
-                    console.log("Błąd w pobieraniu danych")
-                }
-            });
-        };
-
-
-        function chceckLogin() {
-            const db = getDatabase();
-            onAuthStateChanged(auth, (user) => {
-                if (user) {
-                    const uid = user.uid;
-                    const emailRef = ref(db, 'necessitous/' + uid + '/email');
-                    onValue(emailRef, (snapshot) => {
-                        if (snapshot.exists()) {
-                            console.log("Zalogowano!");
-                            location.href = "#profil";
-                        } else {
-                            console.log("Wykryto konto wolontariusza! - wylogowano")
-                            silentlogout();
-                        };
-                    });
-                } else {
-                    location.href = "#logowanie";
-                }
-            });
-        }
-
-
-
-    </script>
+		const firebaseConfig = {
+			apiKey: "AIzaSyBMkYcrZ_ow4Qvopu2vp9yD4DsXBw0NeJ4",
+			authDomain: "hack-heroes-1.firebaseapp.com",
+			projectId: "hack-heroes-1",
+			storageBucket: "hack-heroes-1.appspot.com",
+			messagingSenderId: "455270955105",
+			appId: "1:455270955105:web:077e3d22e1223921245220",
+			measurementId: "G-3NM9QQZTHJ"
+		};
+
+		const app = initializeApp(firebaseConfig);
+		const database = getDatabase(app);
+		const auth = getAuth();
+
+
+		setPersistence(auth, browserLocalPersistence)
+			.then(() => {
+				return signInWithEmailAndPassword(auth, email, password);
+			})
+			.catch((error) => {
+			});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		const sections = document.querySelectorAll('.sections');
+
+		function clear() {
+			sections.forEach(box => {
+				box.style.display = "none";
+			})
+		};
+		window.addEventListener('load', (event) => {
+			hash();
+		});
+
+		if (("onhashchange" in window) && navigator.userAgent.toLowerCase().indexOf('msie') == -1) {
+			window.onhashchange = function () {
+				hash();
+			}
+		};
+
+		function hash() {
+			var hash = window.location.hash.substring(1);
+			clear();
+
+			if (hash == "logowanie") {
+				gotoLogin();
+			} else if (hash == "tworzenie-konta") {
+				gotoRegister();
+			} else if (hash == "profil") {
+				chceckLogin2();
+				gotoProfile();
+			} else if (hash == "tworzenie-zlecenia") {
+				chceckLogin2();
+				gotoCreatePost();
+			} else if (hash == "zlecenia") {
+				chceckLogin2();
+				gotoPosts();
+			} else if (hash == "") {
+				gotoMenu();
+			} else {
+				location.href = "";
+				gotoMenu();
+			}
+
+			if (hash != "") {
+				document.title = ("Just Help | " + (hash.charAt(0).toUpperCase() + hash.slice(1)));
+			} else {
+				document.title = ("Just Help | Potrzebujący");
+			}
+		};
+
+		document.addEventListener("visibilitychange", function () {
+			if (document.hidden) {
+				document.title = ("Just Help | Wróć Do Nas!");
+			}
+			else {
+				var hash = window.location.hash.substring(1);
+				if (hash != "") {
+					document.title = ("Just Help | " + (hash.charAt(0).toUpperCase() + hash.slice(1)));
+				} else {
+					document.title = ("Just Help | Potrzebujący");
+				}
+			}
+		});
+
+
+
+
+		function gotoMenu() {
+			document.getElementById("menu").style.display = "block";
+			alert("info", "Wybierz!");
+		};
+		function gotoProfile() {
+			profil();
+			document.getElementById("profile").style.display = "block";
+		};
+		function gotoCreatePost() {
+			alert("info", "Utwórz zlecenie!");
+			document.getElementById("createpostForm").style.display = "block";
+		};
+		function gotoPosts() {
+			posts();
+			document.getElementById("posts").style.display = "flex";
+		};
+		function gotoLogin() {
+			alert("info", "Zaloguj się!");
+			document.getElementById("loginForm").style.display = "block";
+			document.getElementById("login-email").focus();
+		};
+		function gotoRegister() {
+			alert("info", "Utwórz konto!");
+			document.getElementById("registerForm").style.display = "block";
+			document.getElementById("register-username").focus();
+		};
+		document.getElementById("createpost").addEventListener("click", function (event) {
+			createPost();
+		});
+		document.getElementById("log").addEventListener("click", function (event) {
+			chceckLogin();
+		});
+		document.getElementById("log").addEventListener("keyup", ({ key }) => {
+			if (key === "Enter") {
+				chceckLogin();
+			}
+		});
+		document.getElementById("register").addEventListener("click", function (event) {
+			register();
+		});
+		document.getElementById("login").addEventListener("click", function (event) {
+			login();
+		});
+		document.getElementById("logout").addEventListener("click", function (event) {
+			logout();
+		});
+		document.getElementById("login-password").addEventListener("keyup", ({ key }) => {
+			if (key === "Enter") {
+				login();
+			}
+		});
+		document.getElementById("register-confirm-password").addEventListener("keyup", ({ key }) => {
+			if (key === "Enter") {
+				register();
+			}
+		});
+
+
+		function register() {
+			alert("info", "Sprawdzam!")
+			const username = document.getElementById("register-username");
+			const email = document.getElementById("register-email");
+			const password = document.getElementById("register-password");
+			const confirmpassword = document.getElementById("register-confirm-password");
+
+			if (validate_username(username) == false) {
+				username.value = "";
+				username.focus();
+				alert("error", "Brak nazwy użytkownika!");
+				return
+			}
+			if (validate_email(email) == false) {
+				email.value = "";
+				email.focus();
+				alert("error", "Błędny email!");
+				return
+			}
+			if (validate_password(password) == false) {
+				password.value = "";
+				confirmpassword.value = "";
+				password.focus();
+				alert("error", "Hasło - min 7 znaków!");
+				return
+			}
+			if (validate_confirmpassword(password, confirmpassword) == false) {
+				password.value = "";
+				confirmpassword.value = "";
+				password.focus();
+				alert("error", "Błędnie powtórzone hasło!");
+				return
+			}
+			createUserWithEmailAndPassword(auth, email.value, password.value)
+				.then(function () {
+
+					const user = auth.currentUser
+					const db = getDatabase();
+					const dbRef = ref(db);
+
+					get(child(dbRef, "necessitous/" + user.uid)).then((snapshot) => {
+						set(ref(db, "necessitous/" + user.uid),
+							{
+								username: username.value,
+								email: email.value,
+								last_login: getDateString3(),
+								account_create: getDateString()
+							})
+							.then(() => {
+								alert("succes", "Zarejestrowano!");
+								location.href = "#logowanie";
+							})
+							.catch((error) => {
+								password.value = "";
+								confirmpassword.value = "";
+								password.focus();
+								alert("error", "Takie konto już istnieje!");
+								return
+							});
+					})
+				})
+				.catch((error) => {
+					password.value = "";
+					confirmpassword.value = "";
+					password.focus();
+					alert("error", "Takie konto już istnieje!");
+					return
+				});
+		};
+
+
+
+		function validate_username(username) {
+			var us = username.value;
+			if (us.length > 0) {
+				return true
+			} else {
+				return false
+			}
+		};
+		function validate_email(email) {
+			const expression = /^[^@]+@\w+(\.\w+)+\w$/
+			if (expression.test(email.value) == true) {
+				return true
+			} else {
+				return false
+			}
+		};
+
+		function validate_password(password) {
+			var pw = password.value;
+			if (pw.length > 6) {
+				return true
+			} else {
+				return false
+			}
+		};
+
+		function validate_confirmpassword(password, confirmpassword) {
+			if (password.value != confirmpassword.value) {
+				return false
+			} else {
+				return true
+			}
+		};
+
+
+
+
+		function login() {
+
+			alert("info", "Sprawdzam!")
+			const email = document.getElementById("login-email");
+			const password = document.getElementById("login-password");
+
+			signInWithEmailAndPassword(auth, email.value, password.value)
+				.then(function () {
+
+					const user = auth.currentUser
+					const db = getDatabase();
+					const dbRef = ref(db);
+
+					get(child(dbRef, "necessitous/" + user.uid)).then((snapshot) => {
+						if (snapshot.exists()) {
+							update(ref(db, "necessitous/" + user.uid),
+								{
+									last_login: getDateString3(),
+								})
+								.then(() => {
+									chceckLogin();
+								})
+								.catch((error) => {
+									password.value = "";
+									password.focus();
+									alert("error", "Błędne dane logowania!");
+									return
+								});
+						} else {
+							alert("warning", "Wykryto złe konto!")
+						};
+					})
+				})
+				.catch((error) => {
+					password.value = "";
+					password.focus();
+					alert("error", "Błędne dane logowania!");
+					return
+				});
+		};
+
+
+		function logout() {
+			const auth = getAuth();
+			signOut(auth).then(() => {
+				location.replace('index.html');
+			}).catch((error) => {
+				alert("error", "Błąd wylogowywania!");
+			});
+		}
+
+		function silentlogout() {
+			const auth = getAuth();
+			signOut(auth).then(() => {
+				location.href = "#logowanie";
+			}).catch((error) => {
+				alert("error", "Błąd wylogowywania!");
+			});
+		}
+
+
+
+
+
+
+
+		function profil() {
+			const db = getDatabase();
+			onAuthStateChanged(auth, (user) => {
+				if (user) {
+					const uid = user.uid;
+					const userRef = ref(db, "necessitous/" + uid);
+
+					onValue(userRef, (snapshot) => {
+						if (snapshot.exists()) {
+							document.getElementById("profile-username").innerHTML = snapshot.val().username;
+							document.getElementById("profile-email").innerHTML = snapshot.val().email;
+							document.getElementById("profile-account-create").innerHTML = snapshot.val().account_create;
+						} else {
+							alert("warning", "Wykryto złe konto!")
+							silentlogout();
+						}
+					});
+				} else {
+					silentlogout();
+				}
+			});
+		};
+
+
+		function chceckLogin() {
+			const db = getDatabase();
+			onAuthStateChanged(auth, (user) => {
+				if (user) {
+					const uid = user.uid;
+					const emailRef = ref(db, "necessitous/" + uid + "/email");
+					onValue(emailRef, (snapshot) => {
+						if (snapshot.exists()) {
+							alert("succes", "Zalogowano!")
+							location.href = "#profil";
+						} else {
+							alert("warning", "Wykryto złe konto!")
+							silentlogout();
+						};
+					});
+				} else {
+					location.href = "#logowanie";
+				}
+			});
+		}
+
+		function chceckLogin2() {
+			const db = getDatabase();
+			onAuthStateChanged(auth, (user) => {
+				if (user) {
+					const uid = user.uid;
+					const emailRef = ref(db, "necessitous/" + uid + "/email");
+					onValue(emailRef, (snapshot) => {
+						if (snapshot.exists()) {
+						} else {
+							silentlogout();
+						};
+					});
+				} else {
+					location.href = "#logowanie";
+				}
+			});
+		}
+
+
+
+		function createPost() {
+			onAuthStateChanged(auth, (user) => {
+				if (user) {
+					const db = getDatabase();
+					const dbRef = ref(db);
+					const user = auth.currentUser
+					const uid = user.uid;
+
+					const postsRef = ref(db, "posts/" + uid);
+					get(postsRef).then((snapshot) => {
+						const count = snapshot.size;
+						if (count > 1) {
+							alert("warning", "Maksymalna liczba zleceń to 2");
+							location.href = "#zlecenia";
+						} else {
+							const title = document.getElementById("createpost-title");
+							const description = document.getElementById("createpost-description");
+							const phone = document.getElementById("createpost-phone");
+							const city = document.getElementById("createpost-city");
+							const address = document.getElementById("createpost-address");
+
+
+							const postListRef = ref(db, "posts/" + uid);
+							const newPostRef = push(postListRef);
+							set(newPostRef, {
+								title: title.value,
+								description: description.value,
+								phone: phone.value,
+								city: city.value,
+								address: address.value,
+								create: getDateString2(),
+								accept: false
+							})
+							const userRef = ref(db, "necessitous/" + uid + "/username");
+							get(userRef).then((snapshot) => {
+								if (snapshot.exists()) {
+									const username = snapshot.val();
+									update(newPostRef, {
+										author: username,
+										accept: false
+									})
+										.then(() => {
+											alert("succes", "Utworzono nowe zlecenie!");
+											location.href = "#zlecenia";
+										});
+								};
+							});
+						}
+					});
+				};
+			});
+		};
+
+
+
+
+		function posts() {
+			onAuthStateChanged(auth, (user) => {
+				if (user) {
+					const db = getDatabase();
+					const user = auth.currentUser
+					const uid = user.uid;
+					const postsRef = ref(db, "posts/" + uid);
+                    const posts = document.getElementById("postsList");
+					onValue(postsRef, (snapshot) => {
+						var i = 1;
+						posts.innerHTML = "";
+						snapshot.forEach((childSnapshot) => {
+							var count = snapshot.size;
+							const postId = childSnapshot.key;
+
+							const postIdRef = ref(db, "posts/" + uid + "/" + postId);
+
+
+							var author = "";
+							var title = "";
+							var create = "";
+							var description = "";
+							var phone = "";
+							var city = "";
+							var address = "";
+							var accept = "";
+
+							onValue(postIdRef, (snapshot) => {
+								if (snapshot.exists()) {
+									author = snapshot.val().author;
+									create = snapshot.val().create;
+									title = snapshot.val().title;
+									description = snapshot.val().description;
+									phone = snapshot.val().phone;
+									city = snapshot.val().city;
+									address = snapshot.val().address;
+									accept = snapshot.val().accept;
+								};
+							});
+
+							let div = document.createElement("div");
+
+							div.id = "post-" + i;
+							div.innerHTML = `${title} <br/> ${description} <br/> ${author} <br/> ${city} <br/> ${address} <br/> tel. ${phone} <br/> ${create} <br/>`;
+							if (accept == false) {
+								div.className = "post";
+							} else {
+								div.className = "post accepted";
+							}
+                            document.getElementById("postsList").appendChild(div);
+
+							if (accept == false) {
+								let btn = document.createElement("button");
+								btn.innerHTML = "Usuń";
+								btn.id = `btn-${i}-${accept}`;
+								btn.addEventListener("click", delPost);
+								document.getElementById("post-" + i).appendChild(btn);
+
+							} else {
+								alert("succes", "Przyjęto twoje zlecenie - czekaj na telefon!")
+								let btn3 = document.createElement("button");
+								btn3.innerHTML = "Zakończ";
+								btn3.id = `btn3-${i}-${accept}`;
+								btn3.addEventListener("click", endPost);
+								document.getElementById("post-" + i).appendChild(btn3);
+							};
+							i++;
+						});
+						if (i - 1 < 2) {
+							let div2 = document.createElement("div");
+							div2.innerHTML = "Dodaj";
+							div2.id = "add";
+							div2.addEventListener("click", gotoCreatePostDiv);
+							document.getElementById("postsList").appendChild(div2);
+						}
+					});
+				};
+			});
+		};
+
+		function endPost() {
+			document.getElementById("postsList").removeChild(this.closest("div"));
+			var id = this.closest("button").id;
+			var i = id.substring(id.indexOf('-'), id.lastIndexOf('-')).replace('-', '');
+			var i2 = id.substring(id.lastIndexOf('-')).replace('-', '');
+			postEnding(i, i2);
+		};
+		function delPost() {
+			document.getElementById("postsList").removeChild(this.closest("div"));
+			var id = this.closest("button").id;
+			var i = id.substring(id.indexOf('-'), id.lastIndexOf('-')).replace('-', '');
+			var i2 = id.substring(id.lastIndexOf('-')).replace('-', '');
+			postRemove(i, i2);
+		};
+
+
+		function gotoCreatePostDiv() {
+			location.href = "#tworzenie-zlecenia"
+		};
+
+
+		function postRemove(i, i2) {
+			onAuthStateChanged(auth, (user) => {
+				if (user) {
+					const db = getDatabase();
+					const user = auth.currentUser
+					const uid = user.uid;
+					const postsRef = ref(db, "posts/" + uid);
+					onValue(postsRef, (snapshot) => {
+						var i3 = 1;
+						snapshot.forEach((childSnapshot) => {
+							const postId = childSnapshot.key;
+							const postIdRef = ref(db, "posts/" + uid + "/" + postId);
+							if (i3 == i) {
+								const userRef = ref(db, "posts/" + uid + "/" + postId + "/title");
+								get(userRef).then((snapshot) => {
+									if (snapshot.exists()) {
+										const deltitle = snapshot.val();
+										remove(postIdRef).then(() => {
+											alert("warning", "Usunięto zlecenie: " + deltitle);
+										});
+									};
+								});
+							}
+							i3++;
+						});
+					}, {
+						onlyOnce: true
+					});
+				};
+			});
+		};
+
+
+		function postEnding(i, i2) {
+			onAuthStateChanged(auth, (user) => {
+				if (user) {
+					const db = getDatabase();
+					const user = auth.currentUser
+					const uid = user.uid;
+					const dbRef = ref(db);
+					const postsRef = ref(db, "posts/" + uid);
+					onValue(postsRef, (snapshot) => {
+						var i3 = 1;
+						snapshot.forEach((childSnapshot) => {
+							const postId = childSnapshot.key;
+							console.log("1");
+							const postIdRef = ref(db, "posts/" + uid + "/" + postId);
+							if (i3 == i) {
+								console.log("2");
+								const userRef = ref(db, "posts/" + uid + "/" + postId + "/title");
+								get(userRef).then((snapshot) => {
+									console.log("3");
+									if (snapshot.exists()) {
+										console.log("4");
+										const endtitle = snapshot.val();
+										remove(postIdRef).then(() => {
+											console.log("5");
+											get(child(dbRef, "volunteers/" + i2)).then((snapshot) => {
+												console.log("6");
+												if (snapshot.exists()) {
+													var pointscount = snapshot.val().points;
+													console.log(pointscount);
+													update(ref(db, "volunteers/" + i2),
+														{
+															points: pointscount + 16
+														})
+														.then(() => {
+															alert("warning", "Potwierdzono wykonanie zlecenia: " + endtitle);
+														});
+												};
+											});
+										});
+									};
+								});
+							}
+							i3++;
+						});
+					}, {
+						onlyOnce: true
+					});
+				};
+			});
+		};
+	</script>
 </body>
 </html>

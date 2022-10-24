@@ -20,9 +20,9 @@ iframe {
 	border: none;
 	border-radius: 23px;
 	overflow: hidden;
-	position: absolute;
-	right: 10px;
-	bottom: 0px;
+	position: fixed;
+	right: 0;
+	bottom: 0;
 	box-shadow: var(--shadows);
 	opacity: 0;
 	z-index: -20;
@@ -46,6 +46,9 @@ iframe {
 	color: #fff;
 }
 
+#iframe-btn:active, #back-btn:active {
+	color: #e1e1e1;
+}
 .iframe-active {
 	right: 15px;
 	bottom: 75px;
@@ -59,6 +62,21 @@ iframe {
 
 
 
+#back-btn {
+	width: 55px;
+	height: 55px;
+	position: fixed;
+	left: 10px;
+	bottom: 10px;
+	border: 0;
+	padding: 10px;
+	border-radius: 50%;
+	box-shadow: var(--shadows);
+	background: linear-gradient(30deg, #581B98 1%, #9C1DE7 85%);
+	cursor: pointer;
+	z-index: 120;
+	color: #fff;
+}
 
 
 
@@ -222,12 +240,32 @@ section {
 	border: 3px solid #fff;
 	border-radius: 50%;
 	border-top: 3px solid transparent;
-	width: 15px;
-	height: 15px;
-	-webkit-animation: spin 1s linear infinite; /* Safari */
-	animation: spin 1s linear infinite;
+	width: 12.5px;
+	height: 12.5px;
+	-webkit-animation: spin 0.7s linear infinite; /* Safari */
+	animation: spin 0.7s linear infinite;
+}
+.loader2 {
+	position: fixed;
+	top: 50%;
+	transform: translate(-50%);
+	border: 5px solid #fff;
+	border-radius: 50%;
+	border-top: 5px solid transparent;
+	width: 40px;
+	height: 40px;
+	margin-top: -25px;
+	-webkit-animation: spin 0.7s linear infinite; /* Safari */
+	animation: spin 0.7s linear infinite;
+	opacity: 1;
+	transition: var(--transition);
 }
 
+.loader-hidden {
+	opacity: 0;
+	visibility: hidden;
+	transition: var(--transition);
+}
 /* Safari */
 @-webkit-keyframes spin {
 	0% {
@@ -244,6 +282,10 @@ section {
 		transform: rotate(0deg);
 	}
 
+	50% {
+
+	}
+
 	100% {
 		transform: rotate(360deg);
 	}
@@ -253,4 +295,189 @@ section {
 #profile > div {
 	display: flex;
 	justify-content: center;
+}
+
+
+
+
+
+
+
+
+#loader-wrapper {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 200;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: var(--background-color);
+}
+
+
+
+
+
+
+#alert {
+	display: flex;
+	flex-wrap: nowrap;
+	flex-direction: row;
+	align-content: center;
+	justify-content: flex-start;
+	align-items: center;
+	position: fixed;
+	top: -100px;
+	left: 50%;
+	transform: translateX(-50%);
+	height: min-content;
+	width: max-content;
+	background-color: gray;
+	color: #fff;
+	border-radius: 10px;
+	padding: 8px;
+	box-shadow: var(--shadows);
+	opacity: 0;
+	transition: var(--transition);
+}
+
+#alert h3{
+	padding: 0;
+	margin: 0;
+    font-weight: 300;
+    font-size: 0.6rem;
+	transition: var(--transition);
+
+}
+
+.alert-visible {
+	top: 10px !important;
+	opacity: 1 !important;
+	transition: var(--transition);
+}
+.alert-visible h3{
+    font-weight: 400 !important;
+    font-size: 1rem !important;
+	transition: var(--transition);
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#posts {
+	flex-direction: column;
+	align-content: center;
+	justify-content: center;
+	align-items: center;
+}
+
+
+
+#postsList {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	align-content: center;
+	justify-content: center;
+	align-items: center;
+	width: 900px;
+}
+
+.post {
+	flex-direction: row;
+	flex-wrap: wrap;
+	align-content: center;
+	justify-content: center;
+	align-items: center;
+	width: 300px;
+	word-break: break-word; /*zawija s³owa*/
+	background-color: var(--background-color2);
+	padding: 20px;
+	margin: 10px;
+	border-radius: 10px;
+}
+
+
+
+#tops {
+	flex-direction: column;
+	flex-wrap: nowrap;
+}
+
+#topsList {
+	display: flex;
+	flex-direction: column-reverse;
+	flex-wrap: nowrap;
+	justify-content: flex-end;
+}
+
+.top {
+	width: 300px;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: space-between;
+	align-content: center;
+	align-items: center;
+	padding: 10px;
+
+}
+
+.top i {
+	padding-right: 5px;
+}
+
+
+
+
+
+
+
+
+form {
+	display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+}
+
+
+
+#test {
+	position: fixed;
+	top: 10px;
+	left: 10px;
+	opacity: 0.2;
+}
+
+#test > h2{
+	margin: 0;
+}
+
+#test > p{
+	margin: 0;
+	padding: 3px;
+}
+
+
+#profile, #tops, form {
+	background-color: var(--background-color2);
+	padding: 20px;
+	margin: 10px;
+	border-radius: 10px;
 }
