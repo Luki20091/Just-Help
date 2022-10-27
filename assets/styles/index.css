@@ -380,7 +380,7 @@ section {
 
 
 
-#posts {
+#posts, #acctive-posts{
 	flex-direction: column;
 	align-content: center;
 	justify-content: center;
@@ -389,7 +389,7 @@ section {
 
 
 
-#postsList {
+#postsList, #acctive-postsList {
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
@@ -406,7 +406,7 @@ section {
 	justify-content: center;
 	align-items: center;
 	width: 300px;
-	word-break: break-word; /*zawija s³owa*/
+	word-break: break-word; /*zawija sÂ³owa*/
 	background-color: var(--background-color2);
 	padding: 20px;
 	margin: 10px;
